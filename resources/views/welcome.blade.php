@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>S.V.S</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -18,6 +18,10 @@
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
+                background:url('images/himanshu-srivastav-V0PC5z5GdCA-unsplash.jpg');
+                 background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
             }
 
             .full-height {
