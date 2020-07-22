@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Role;
+use App\School;
 use Gate;
 use Illuminate\Http\Request;
+use DB;
 
 class UsersController extends Controller
 {
@@ -47,14 +49,17 @@ class UsersController extends Controller
 //only admin allowed to do te editing
 if (Gate::denies('edit-users')) {
     # code...
-    return \redirect(\route('admin.users.index'));
+    return \redirect(\route('admin.users.index')->with('error','action not authorised'));
 }
 
         //Edit user code
         $roles = Role::all();
+        $schools = School::all();
         return view('admin.users.edit')->with([
             'user'=>$user,
-            'roles'=>$roles
+            'roles'=>$roles,
+            'schools' =>$schools
+
         ]); 
     }
 
@@ -69,10 +74,13 @@ if (Gate::denies('edit-users')) {
     {
         //updatin te user
         $user->roles()->sync ( $request->roles);
+        $user->schools()->sync ( $request->schools);
+
 
         $user->name = $request->name;
         $user->email = $request->email;
         $user->reg_number = $request->reg_number;
+      
         $user->save();
         return \redirect()->route('admin.users.index'); 
         

@@ -27,7 +27,9 @@
     <section class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <div class="card">
+        <div class="card" style="padding:15px">
+     
+         @can('manage-users')
               <table class="table table-responsive">
                     <thead>
                       <tr>
@@ -36,19 +38,24 @@
                         <th scope="col">Email</th>
                         <th scope="col">Reg_Number</th>
                         <th scope="col">Roles</th>
+                         <th scope="col">School</th>
                         <th scope="col">Actions</th>
                       </tr>
                     </thead>
 
                     <tbody>
-                    @foreach ($users as $user )
+                    @foreach ($users  as $user )
                     <tr>
                          <th scope="row">{{$user->id}} </th>
                          <td>{{$user->name}}</td>
                          <td>{{$user->email}}</td>
                          <td>{{$user->reg_number}}</td>
+                         
                          <td>{{ implode(',', $user->roles()->get()->pluck('name')->toArray())  }} </td>
+                          <td>{{ implode(',', $user->schools()->get()->pluck('school_name')->toArray())  }} </td>
+                         
                          <td>
+
                          @can('edit-users')
                             <a href="{{ route('admin.users.edit', $user->id)}}"><button type="button" class="btn btn-primary float-left">Edit</button>
                           @endcan
@@ -64,6 +71,7 @@
                      @endforeach     
                     </tbody>
                     </table>
+                    @endcan
                     </div>
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->

@@ -26,14 +26,21 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
            // restricting ui access
            Gate::define('manage-users', function($user){
-            return $user->hasAnyRoles(['admin','student']); 
+            return $user->hasAnyRoles(['admin','candidate']); 
         });
         //call of gates to give permissions to users
         Gate::define('edit-users', function($user){
-            return $user->hasAnyRoles(['admin','student']); 
+            return $user->hasAnyRoles(['admin','candidate']); 
         });
         Gate::define('delete-users', function($user){
             return $user->hasRole('admin'); 
         });
+        Gate::define('can-be-elected', function($user){
+            return $user->hasRole('candidate'); 
+        });
+        Gate::define('can-vote', function($user){
+            return $user->hasAnyRoles(['candidate','student']); 
+        });
+
     }
 }

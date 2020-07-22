@@ -5038,7 +5038,7 @@ margin-top: 10px;
 .card-login form{
   padding-top: 7%;
 }
-.card-login input{
+.card-login input, select{
   color: aliceblue;
   background:none;
   outline: none;
@@ -5050,6 +5050,10 @@ margin-top: 10px;
   background: none;
   border-radius:12px;
   border: 1px solid rgb(141, 140, 140);
+}
+.card-login option{
+  background: rgb(31, 30, 30);
+  color: aliceblue;
 }
 
 .card > hr {
@@ -6782,6 +6786,7 @@ a.close.disabled {
 .carousel-inner {
   position: relative;
   width: 100%;
+  height: 59vh !important;
   overflow: hidden;
 }
 
@@ -6796,6 +6801,7 @@ a.close.disabled {
   display: none;
   float: left;
   width: 100%;
+  height: 60vh !important;
   margin-right: -100%;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;

@@ -5,6 +5,9 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
+   
+
+    
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
@@ -13,7 +16,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
+              <li class="breadcrumb-item active">Dashboard</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -22,24 +25,95 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
+   
     <section class="content">
       <div class="container-fluid">
+       <div class ="card col md-12" style="">
+   
+    <div id="my-carousel" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li class="active" data-target="#my-carousel" data-slide-to="0" aria-current="location"></li>
+        <li data-target="#my-carousel" data-slide-to="1"></li>
+        <li data-target="#my-carousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" style="">
+        <div class="carousel-item active">
+          <img style=" background:linear-gradient(to left, rgba(0,0,0,0.1) 9%, 
+    rgba(0,0,0,0.3) 19%, rgba(0,0,0,0.45) 39%, rgba(0,0,0,0.7) 79%, rgba(0,0,0,0.95) 100%) #1c1c1c;
+    width: 100%;
+     background-Size:100%, cover;
+    height:55vh;
+    margin:10px 0;
+    box-sizing: border-box;
+    border-radius: 15px;" 
+    src="{{asset('images/chuttersnap-nczBPAKmvcE-unsplash.jpg')}}" alt="">
+          <div class="carousel-caption d-none d-md-block"style="float: left">
+            <h5>No More Queing</h5>
+            <p>No more wastage of time when queing waiting for your turn to vote.SAY GOODBYE TO QUEING </p>
+          </div>
+        </div>
+        <div class="carousel-item ">
+          <img style=" background:linear-gradient(to left, rgba(0,0,0,0.1) 9%, 
+    rgba(0,0,0,0.3) 19%, rgba(0,0,0,0.45) 39%, rgba(0,0,0,0.7) 79%, rgba(0,0,0,0.95) 100%) #1c1c1c;
+    width: 100%;
+     background-Size:100%, cover;
+    height:55vh;
+    margin:10px 0;
+    box-sizing: border-box;
+    border-radius: 15px;" 
+    src="{{asset('images/clint-patterson-dYEuFB8KQJk-unsplash.jpg')}}" alt="">
+          <div class="carousel-caption d-none d-md-block"style="float: left">
+            <h5>No More Queing</h5>
+            <p>No more wastage of time when queing waiting for your turn to vote.SAY GOODBYE TO QUEING </p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img style=" background:linear-gradient(to left, rgba(0,0,0,0.1) 9%, 
+    rgba(0,0,0,0.3) 19%, rgba(0,0,0,0.45) 39%, rgba(0,0,0,0.7) 79%, rgba(0,0,0,0.95) 100%) #1c1c1c;
+    width: 100%;
+    height: 55vh;
+    margin:10px 0;
+    box-sizing: border-box;
+    border-radius: 15px;" src="{{asset('images/himanshu-srivastav-V0PC5z5GdCA-unsplash.jpg')}}" alt="">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Very Convinient And Effective</h5>
+            <p>You can elect your favourite leader whenever you are provided you have a smartphone or an access to a computer. SAY GOODBYE TO USE OF PAPERS</p>
+          </div>
+        </div>
+        
+      </div>
+      <a class="carousel-control-prev" href="#my-carousel" data-slide="prev" role="button">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#my-carousel" data-slide="next" role="button">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    </div>
         <!-- Small boxes (Stat box) -->
+         @can('manage-users')
         <div class="row">
+         
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3>{{$schools->Count()}}</h3>
 
-                <p>New Orders</p>
+                <p>Faculties</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+             
+              <a href="{{ route('admin.school.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            
             </div>
+        
           </div>
+             @endcan
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
@@ -47,7 +121,7 @@
               <div class="inner">
                 <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-                <p>Bounce Rate</p>
+                <p>Votes</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -60,14 +134,14 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>{{$users->Count()/10*100}}</h3>
 
-                <p>User Registrations</p>
+                <p>Registered Users</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{ route('admin.users.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

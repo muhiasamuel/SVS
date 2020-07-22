@@ -6,10 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use App\Role;
+use App\School;
+use Illuminate\Http\Requests;
+use Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Input;
 class RegisterController extends Controller
 {
     /*
@@ -54,6 +57,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'reg_number' => ['required', 'string', 'max:25', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'school_name' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -70,11 +74,19 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'reg_number' => $data['reg_number'],
+           'school_name' => $data['school_name'],
             'password' => Hash::make($data['password']),
         ]);
-        $role = Role::select('id')->where('name','user')->first();
+        $School = School::select('id')->where('school_name', Request::get('school_name'))->get();
+
+        $user->schools()->attach($School);
+        
+        $role = Role::select('id')->where('name','student')->first();
 
         $user->roles()->attach($role);
         return $user;
+
+        
+
     }
 }
