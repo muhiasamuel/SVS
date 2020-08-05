@@ -13,7 +13,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{ route('admin.users.edit', $user->id)}}">Edit {{$user->name}} </a></li>
+              <li class="breadcrumb-item"><a href="{{ route('admin.users.edit', $user->id)}}">{{$user->name}}'s Profile </a></li>
               <li class="breadcrumb-item active">Dashboard</li>
             </ol>
           </div><!-- /.col -->
@@ -27,11 +27,12 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="card col-md-10" style ="padding:20px">
+        <h3>{{$user->name}}'s Profile</h3>
             <div class="form-group row">
-                <label for="name" class="col-md-2 col-form-label text-md-right">userImage</label>
+                <label for="name" class="col-md-2 col-form-label text-md-right"></label>
           <div class="col-md-4">                
         <img src="{{asset('images/'.$user->avatar)}}"style="width:150px;height:150px; float:left; border-radius:50%; margin-right:30px">
-        <h3>{{$user->name}}'s Profile</h3>
+        
         </div>
         </div>
               <form action="{{route('admin.users.update', $user)}} " method="POST"> 
@@ -73,6 +74,21 @@
                                 @enderror
                             </div>
                         </div>
+                        @can('manage-users')
+                         <div class="form-group row">
+                            <label for="designation" class="col-md-2 col-form-label text-md-right">Designation</label>
+
+                            <div class="col-md-6">
+                                <input id="designation" type="designation" class="form-control @error('designation') is-invalid @enderror" name="designation" value="{{ $user->designation}}" required >
+
+                                @error('designation')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        @endcan
                          @csrf
                          {{ method_field('PUT')}}
                          <div class="form-group row">
@@ -82,6 +98,9 @@
                          
                          <div class="form-check">
                           <input type="checkbox"name="schools" value="{{$school->id}} "
+                           @if ($user->schools->pluck('id')->contains($school->id))
+                          checked
+                          @endif
                          >
                           <label>{{$school->school_name}}</label>
                          </div>    

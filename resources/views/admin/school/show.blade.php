@@ -26,32 +26,32 @@
     <div class="container-fluid">
     <div class="card" style="padding:15px">
          <div class="row">
-        <div class="col-lg-6 margin-tb">
+        <div class="col-lg-10 margin-tb">
             <div class="pull-left">
-                <h2> Show Product</h2>
+                <h2> Students according to their schools</h2>
+            </div>
+            <div class="float-right ">
+            <form class="form-inline my-2 my-lg-2" type="get" action="{{url('/search')}}" >
+            <input class="form-control mr-sm-2"name="query"type="search" placeholder="Search" aria-label="search">
+            <button class="btn btn-outline-success my-2 my-sm-0"type="submit">Search</button>
+            </form>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('admin.school.index') }}"> Back</a>
+                <a class="btn btn-success" href="{{ route('admin.school.index') }}"> Back</a>
             </div>
         </div>
-    </div>  <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6">
-            <div class="form-group">
-                <strong>Details:</strong>
-               {{$school->Details}}
-            </div>
-             </div>
-        </div>
+    </div>  
    
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <div class="card col-12">
+                <strong>Click on the page links to view the next school</strong>
              
                 @foreach ($schools as $school)
                 <strong> below users belong to:
                   <h4>{{ $school->school_name}}</h4></strong>
-                  <div class="card">
+                  <div class="card col-10 ">
                   <p>
                   <table class="table table-responsive">
                    <thead>
@@ -78,23 +78,29 @@
                          <td>
 
                          @can('edit-users')
-                            <a href="{{ route('admin.users.edit', $user->id)}}"><button type="button" class="btn btn-outline-success float-left"><i class="fas fa-edit"></i></button>
+                            <a href="{{ route('admin.users.edit', $user->id)}}"><button type="button" class="btn btn-outline-primary float-left"><i class="fas fa-edit"></i></button>
                           @endcan
                           @can('delete-users')
                               <form action="{{ route('admin.users.destroy', $user)}}" method="POST" class="float-left">
                               @csrf
                               {{method_field('DELETE')}}
-                              <button type="submit" class="btn btn-outline-secondary"><i class="fas fa-trash"></i></button>
+                              <button type="submit" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
                               </form>
                               @endcan
                          </td>
                         </tr> 
+                      
                   @endforeach
+ {!!$schools->render()!!}
                   </tbody>
                   </p>
                   </table> 
+                 
+
                   </div> 
+                  
                 @endforeach
+               
                 </div>
             </div>
         </div>

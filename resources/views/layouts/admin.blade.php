@@ -47,10 +47,10 @@
     </ul>
 
     <!-- SEARCH FORM -->
-    <form action="/search" method="POST" role="search" class="form-inline ml-3">
-    @csrf
+    <form action=" {{url('/search')}}" method="get" role="search" class="form-inline ml-3">
+ 
       <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control form-control-navbar" name="query" type="text" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
           <button class="btn btn-navbar" type="submit">
             <i class="fas fa-search"></i>
@@ -253,7 +253,7 @@
            
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="{{ route('candidates.view') }}" class="nav-link">
               <i class="nav-icon fas fa-user-friends"></i>
               <p>
                Candidates  
@@ -262,7 +262,7 @@
            
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="{{ route('results.view')}}" class="nav-link">
               <i class="nav-icon fas fa-box-open"></i>
               <p>
                 poll Results </p>
@@ -270,7 +270,7 @@
           </li>
           
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href= "{{ route('poll.index')}}" class="nav-link">
               <i class="nav-icon fas fa-vote-yea"></i>
               <p>
               Voting
@@ -317,19 +317,20 @@
               </li> 
             </ul>
           </li>
-          
-         @can('can-vote')
-          <li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link">
+            <li class="nav-item">
+            <a a href="{{ route('delegates.view') }}" class="nav-link">
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
-                View Candidates
+                View Delegates
                 <span class="badge badge-info right">2</span>
               </p>
             </a>
           </li>
+          
+         @can('can-vote')
+        
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
+            <a href= "{{ route('candidates.vote') }}"class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
                Start Voting

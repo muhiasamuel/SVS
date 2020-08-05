@@ -24,7 +24,7 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        $schools = School::Oldest()->paginate(7);
+        $schools = School::latest()->paginate(6);
         return \view('admin.school.index', compact('schools'))
         ->with('i', (\request()->input('page',1)-1)*7);
     }
@@ -69,11 +69,14 @@ class SchoolController extends Controller
      */
     public function show(School $school,User $user)
     {
-      
+        if (Gate::denies('can-view-schools')) {
+            # code...
+            return \redirect(\route('home'));
+        }
         
         //$roles = Role::all();
-       $schools = School::all()->load('users');
-        return view('admin.school.show',\compact('school','user'));//->with([
+       $schools = School::latest()->paginate(1);
+        return view('admin.school.show',\compact('schools','user'));//->with([
             //'user'=>$user,
             //'roles'=>$roles,
             //'schools' =>$schools

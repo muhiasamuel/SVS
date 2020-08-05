@@ -93,9 +93,9 @@
     </div>
     </div>
         <!-- Small boxes (Stat box) -->
-         @can('manage-users')
+       
         <div class="row">
-         
+           @can('manage-users')
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">

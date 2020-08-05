@@ -13,9 +13,10 @@ class SchoolsTableSeeder extends Seeder
     {
         School::truncate();
 
-        School::create(['school_name' =>'General','facultyId'=>'sd453']);
-        School::create(['school_name' =>'School of pure and applied sciences','facultyId'=>'sdf453']);
-        School::create(['school_name' =>'School of environmental sciences','facultyId'=>'ss453']);
+        School::create(['school_name' =>'General','facultyId'=>'G453']);
+        School::create(['school_name' =>'School Of Pure And Applied Science','facultyId'=>'SBf453']);
+        School::create(['school_name' =>'School Of Environmental Science','facultyId'=>'SE453']);
+        School::create(['school_name' =>'School Of Business','facultyId'=>'BS453']);
     }
 
     

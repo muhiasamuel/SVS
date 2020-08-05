@@ -24,7 +24,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users =User::all();
+        $users =User::paginate(5);
         return view ('admin.users.index') ->with('users',$users);
     }
 
@@ -74,9 +74,12 @@ if (Gate::denies('edit-users')) {
     {
         //updatin te user
         $user->roles()->sync ( $request->roles);
+        
+      
+        
         $user->schools()->sync ( $request->schools);
 
-
+        $user->designation= $request->designation;    
         $user->name = $request->name;
         $user->email = $request->email;
         $user->reg_number = $request->reg_number;
@@ -102,6 +105,7 @@ if (Gate::denies('edit-users')) {
         //delete users
         //dd($user);
         $user->roles()->detach();
+        $user->polls()->detach();
         $user->delete();
         return \redirect()->route('admin.users.index');
 

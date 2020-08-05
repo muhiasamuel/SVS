@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->default('default.png');
             $table->string('candidate_agendas')->nullable();
             $table->string('About_user')->nullable();
+            $table->string('designation')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -10,6 +10,10 @@ use Image;
 use Illuminate\Support\Facades\Hash;
 class ProfileController extends Controller
 {
+  public function __construct(){
+    $this->middleware('auth');
+}
+
    public function editAuthUser(){
       if (Auth::user()) {
         $user = User::find(Auth::user()->id);
@@ -32,6 +36,7 @@ class ProfileController extends Controller
          $user->name = $request->name;
          $user->email = $request->email;
          $user->reg_number = $request->reg_number;
+         $user->designation = $request->designation;
          $user->candidate_agendas = $request->candidate_agendas;
          $user->About_user = $request->About_user;
          $user ->avatar = $filename;

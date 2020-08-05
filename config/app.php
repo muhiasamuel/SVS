@@ -228,6 +228,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' =>  intervention\Image\Facades\Image::class,
+        'Pagination' =>  Illuminate\Support\Facades\Pagination::class,
+       
 
     ],
 

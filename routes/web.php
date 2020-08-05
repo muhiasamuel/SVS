@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::any('/search', function () {
-    dd(Input::get('q'));
+    dd(request()->get('query'));
 });
 
 Auth::routes();
@@ -38,4 +38,9 @@ Route::get('user/{id}', 'Profile\ProfileController@profile')->name('user.profile
 Route::get('/edit/user/', 'Profile\ProfileController@editAuthUser')->name('user.edit');
 Route::get('/view/user/', 'Profile\ProfileController@viewAuthUser')->name('user.view');
 Route::post('/update/user/', 'Profile\ProfileController@updateAuthUser')->name('user.update');
-
+Route::get('/view/candidates/', 'CandidateController@index')->name('candidates.view');
+Route::get('/view/delegate/', 'CandidateController@viewDelegates')->name('delegates.view');
+Route::get('/vote/candidate/', 'PollController@Index')->name('candidates.vote');
+Route::get('/candidates/poll{id}', 'PollController@vote')->name('candidate.poll');
+Route::get('/view/results/', 'PollController@voteCount')->name('results.view');
+Route::resource('/poll', 'PollController');
