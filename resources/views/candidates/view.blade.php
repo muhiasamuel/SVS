@@ -19,16 +19,7 @@
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+    
     <!-- /.content-header -->
 
     <!-- Main content -->
@@ -37,9 +28,7 @@
     <div class="card" style="padding:15px">
          <div class="row">
         <div class="col-lg-10 margin-tb">
-            <div class="pull-left">
-                <h2> Students according to their schools</h2>
-            </div>
+           
             <div class="float-right ">
             <form class="form-inline my-2 my-lg-2" type="get" action="{{url('/search')}}" >
             <input class="form-control mr-sm-2"name="query"type="search" placeholder="Search" aria-label="search">
@@ -47,7 +36,7 @@
             </form>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('admin.school.index') }}"> Back</a>
+                <h2> Candidates</h2>
             </div>
         </div>
     </div> 
@@ -61,12 +50,8 @@
                         </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 ">
-            <div class="form-group">
+            
                 <div class="card col-12 "style="background: rgb(10, 7, 32); color:white; padding:30px 0;">
-               
-             
-              
-               
                   <h4 class="col-6 offset-md-4">{{ $role->name}}s</h4></strong>
                     <div class="col-12 offset-md-1">
                   <div class="card col-10" style=" background:linear-gradient(to bottom,rgb(10, 7, 33) 9%, rgb(10, 7, 38) 19%, 
@@ -78,7 +63,7 @@
                            
       <div class="row" >
      <strong class="col-md-1 text-md-right"></strong>
-           <img src="{{asset('images/'.$candidate->avatar)}}"style="width:190px;height:170px; float:left; border-radius:50%; margin-top:20px">
+           <img src="{{asset('images/'.$candidate->avatar)}}"style="width:177px;height:190px; float:left; border-radius:50%; margin-top:20px">
            <div class="col-md-4" style="padding-top:98px;color:white;" >
            <strong class="col-md-4 text-lg-right" >My Names:</strong>
             <p style="">{{$candidate->name}}</p>
@@ -117,31 +102,35 @@
                               {{method_field('DELETE')}}
                               <button type="submit" class="btn btn-danger"><i class="fas fa-trash">Delete</i></button>
                               </form></p>
-                              @endcan 
+                              @endcan
+                              @can('can-vote') 
                               <a href="{{ route('candidate.poll', $candidate->id)}}"><button type="button" class="btn btn-success float-left"><i class="fas fa-edit">Vote For Me</i></button>
                          </a></p>
-                         @foreach ($Users as $User )
-                             {{$User->polls_count}}
-                         @endforeach
+                         @endcan
+                          <p>
+                            <a href="#"><button type="button" class="btn btn-info float-left"><strong> my Votes: {{$candidate->polls->count()}}</strong></button>
+                         </a></p>
+
                            
                               </div>   
                   @endforeach
-                    {{$role->users()->count()}}
+                    
                     
                  
                    </div>
                     
                     </div>
-                @endforeach
+                 </div>
+            </div>
               
                
                 </div>
-            </div>
-        </div>
-         </div>
+           
+             @endforeach
+        
          
-    </div>
-</div>
+      </div>
     </div>
 </section>
+</div>
 @endsection

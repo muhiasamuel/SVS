@@ -29,7 +29,7 @@ $admin = User::create([
     'name'=>'Admin User',
     'email'=>'admin@admin.com',
     'reg_number'=>'123d',
-    
+    'school_name'=>'General',
     'password'=>Hash::make('password')
 
 ]);
@@ -37,13 +37,14 @@ $student = User::create([
     'name'=>'Student User',
     'email'=>'student@student.com',
     'reg_number'=>'456f',
- 
+    'school_name'=>'School Of Environmental Science',
     'password'=>Hash::make('password')
 ]);
 $candidate = User::create([
     'name'=>'candidate User',
     'email'=>'candidate@candidate.com',
     'reg_number'=>'abcd',
+    'school_name'=>'School Of Pure And Applied Science',
     'designation'=>'Secretary General',
     'password'=>Hash::make('password')
 ]);
@@ -51,6 +52,7 @@ $delegate = User::create([
     'name'=>'delegate User',
     'email'=>'delegate@delegate.com',
     'reg_number'=>'srttsy',
+    'school_name'=>'School Of Business',
     'designation'=>'Male Delegate',
     'password'=>Hash::make('password')
 ]);

@@ -64,7 +64,7 @@
                 
             
                   @foreach ($role->users()->paginate(1,['*'],'usersPage') as $user)
-       
+         @if(Auth::user()->school_name == $user->school_name)
                            
       <div class="row" >
      <strong class="col-md-1 text-md-right"></strong>
@@ -109,10 +109,12 @@
                               @endcan 
                               <a href="{{ route('candidate.poll', $user->id)}}"><button type="button" class="btn btn-success float-left"><i class="fas fa-edit">Vote For Me</i></button>
                          </a></p>
-                              </div>   
+                              </div>
+                               
+                               @endif   
                   @endforeach
-                    
-                    
+        
+                   
                  
                    </div>
                     

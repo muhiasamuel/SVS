@@ -30,7 +30,7 @@
         <div class="card" style="padding:15px">
      
          @can('manage-users')
-              <table class="table table-responsive">
+              <table class="table table-secondary table-responsive">
                     <thead>
                       <tr>
                       <th scope="col">Id</th>

@@ -128,7 +128,7 @@
                             <label for="password" class="col-md-2 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-4">
-                                <input id="password" type="password"placeholder="Enter New Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password"placeholder="Enter New Password" class="form-control @error('password') is-invalid @enderror" name="password"value="{{ Auth::user()->password}}" required autocomplete="new-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">

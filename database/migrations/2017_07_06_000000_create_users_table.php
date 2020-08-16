@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('reg_number')->unique();
+            $table->string('school_name');
             $table->string('avatar')->default('default.png');
             $table->string('candidate_agendas')->nullable();
             $table->string('About_user')->nullable();

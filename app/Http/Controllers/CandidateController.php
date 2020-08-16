@@ -15,22 +15,25 @@ class CandidateController extends Controller
     {
       
         
-        $roles = Role::where('name', 'candidate')->paginate(1);
+            $roles = Role::where('name', 'candidate')->paginate(1);
               
-        return view('candidates.view',\compact('user','roles'));//->with([
+            return view('candidates.view',\compact('user','roles'));//->with([
+       
+
         
      
     }
 
     public function viewDelegates(School $school,User $user,Role $role)
     {
+      $school = School::firstOrFail();
       
-        
         $roles = Role::where('name', 'delegate')->paginate(1);
        
             return view('candidates.delegates',\compact('user','roles'));//->with([
              
-    
+           
+            
         
      
     }

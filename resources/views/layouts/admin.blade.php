@@ -338,7 +338,7 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="{{ route('results.view')}}" class="nav-link">
               <i class="nav-icon far fa-check-circle"></i>
               <p>
                 View poll Results
@@ -385,7 +385,7 @@
   </aside>
 @yield('content')
  
-  <footer class="main-footer" style="background:blue">
+  <footer class="main-footer" style="background:rgb(10, 7, 32); justify-content:center; text-align:center;">
     <strong>Copyright &copy; 2020 <a href="http://samtec.io">@Samtec</a>.</strong>
     
     <div class="float-right d-none d-sm-inline-block">

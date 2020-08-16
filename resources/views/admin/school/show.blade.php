@@ -53,7 +53,7 @@
                   <h4>{{ $school->school_name}}</h4></strong>
                   <div class="card col-10 ">
                   <p>
-                  <table class="table table-responsive">
+                  <table class="table table-primary table-responsive">
                    <thead>
                       <tr>
                   <th scope="col">Id</th>

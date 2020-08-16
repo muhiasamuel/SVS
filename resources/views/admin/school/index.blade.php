@@ -40,7 +40,7 @@
         <!-- Small boxes (Stat box) -->
         <div class="card" style="padding:15px">
         
-              <table class="table table-responsive">
+              <table class="table table-info table-responsive-md">
                     <thead>
                       <tr>
                    
@@ -55,7 +55,7 @@
                     <tbody>
                     @foreach ($schools as $School)
                     <tr>
-                         <th scope="row">{{$i++}} </th>
+                         <th scope="row">{{$School->id}} </th>
                          <td>{{$School->school_name}}</td>
                          <td>{{$School->Details}}</td>
                          <td>{{$School->facultyId}}</td>

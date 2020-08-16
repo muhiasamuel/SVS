@@ -30,7 +30,7 @@ class ProfileController extends Controller
         $avatar = $request->file('avatar');
         //$path = public_path() . '/images/';
         $filename = time() . '.' . $avatar->getClientOriginalExtension();
-        Image::make($avatar)->resize(300, 300)->save(public_path('/images/'.$filename));
+        Image::make($avatar)->resize(340, 500)->save(public_path('/images/'.$filename));
        }
 
          $user->name = $request->name;

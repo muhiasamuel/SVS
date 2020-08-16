@@ -65,7 +65,7 @@ class PollController extends Controller
        $vote->user_id = $id;
        
         $vote->save();
-        return redirect('home');
+        return redirect()->back();
     }
 
 
@@ -79,7 +79,7 @@ class PollController extends Controller
     public function voteCount() {
         $role = Role::where('name','candidate')->where('name','delegate');
         $Users=User::withCount('polls')->get();
-        return view('candidates.results',\compact('Users'));
+        return view('candidates.results',\compact('Users','role'));
     }
   
    
